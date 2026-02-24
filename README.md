@@ -1,20 +1,49 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Sembar Adventure – Rafting & Camping Landing Page
 
-# Run and deploy your AI Studio app
+Landing page Next.js 15 untuk promosi paket rafting, camping, outbound, dan cafe Sembar Adventure di Sungai Cisadane, Bogor. Seluruh aset gambar disajikan lokal (`/public/assets/images`) untuk memastikan loading cepat tanpa bergantung CDN.
 
-This contains everything you need to run your app locally.
+## Fitur
+- Hero, paket harga, layanan, galeri, testimoni, dan form booking WhatsApp.
+- Floating CTA WhatsApp yang langsung membuka chat dengan nomor bisnis.
+- Keamanan header via `middleware.ts` (CSP, HSTS, X-Frame-Options, Permissions-Policy, dsb).
+- Typography memakai font sistem (tidak perlu fetch Google Fonts).
 
-View your app in AI Studio: https://ai.studio/apps/e6a7b8cd-1194-46e4-81a2-08f8b08c8891
+## Prasyarat
+- Node.js 18+ (disarankan 20+)
+- npm
 
-## Run Locally
+## Menjalankan di lokal
+1. Instal dependensi  
+   ```bash
+   npm install
+   ```
+2. Siapkan environment file `.env.local` (salin dari `.env.example`) dan isi:
+   - `NEXT_PUBLIC_WHATSAPP_NUMBER` — nomor bisnis diawali kode negara, hanya digit (contoh: 62812xxxxxxx).
+   - `NEXT_PUBLIC_CONTACT_EMAIL` — email publik untuk footer.
+   - `GEMINI_API_KEY` — hanya diperlukan jika Anda memakai integrasi Gemini di masa depan (aman dibiarkan kosong untuk landing page ini).
+3. Jalankan dev server  
+   ```bash
+   npm run dev
+   ```
+   Akses di http://localhost:3000
 
-**Prerequisites:**  Node.js
+## Build & start produksi
+```bash
+npm run build
+npm start         # atau: node .next/standalone/server.js jika output standalone dipertahankan
+```
 
+## Catatan keamanan & privasi
+- Tidak ada nomor/email hardcode di kode; semua via env vars di atas.
+- CSP membatasi sumber ke `self`, data:, dan blob: untuk gambar; jika menambah domain pihak ketiga (misal CDN atau analytics), perlu ditambahkan ke header di `middleware.ts`.
+- Embed peta menggunakan iframe Google Maps; tidak menyertakan kunci API.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Struktur penting
+- `app/page.tsx`      – halaman utama.
+- `components/*`      – komponen UI (Hero, Packages, Services, Gallery, BookingForm, Footer, Navbar).
+- `public/assets/images` – gambar lokal (.webp).
+- `middleware.ts`     – header keamanan.
+- `next.config.ts`    – konfigurasi Next (standalone output, remotePatterns untuk image placeholders).
+
+## Lisensi
+Gunakan sesuai kebutuhan proyek; pastikan mematuhi lisensi gambar dan font yang Anda tambahkan sendiri.
