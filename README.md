@@ -8,6 +8,12 @@ Landing page Next.js 15 untuk promosi paket rafting, camping, outbound, dan cafe
 - Keamanan header via `middleware.ts` (CSP, HSTS, X-Frame-Options, Permissions-Policy, dsb).
 - Typography memakai font sistem (tidak perlu fetch Google Fonts).
 
+## Harga Foto & Video per Paket
+- Long Trip: Rp300.000
+- Fun Rafting: Rp100.000
+- Panorama Trip (Family Trip): Rp150.000
+- Adventure Trip: Rp250.000
+
 ## Prasyarat
 - Node.js 18+ (disarankan 20+)
 - npm
